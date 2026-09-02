@@ -3,227 +3,636 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Rohith Srikumar Menon</title>
-<meta name="description" content="Rohith Srikumar Menon — MCA (Generative AI) student at SRMIST. Projects in reinforcement learning, data analysis, and business intelligence.">
+<meta name="description" content="MCA student specialising in Generative AI at SRMIST. Reinforcement learning, data analysis, and business intelligence projects.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rohith Srikumar Menon">
+<meta property="og:description" content="MCA student specialising in Generative AI at SRMIST. Reinforcement learning, data analysis, and business intelligence projects.">
+<meta property="og:url" content="https://rohith602.github.io">
+<meta name="twitter:card" content="summary">
+
+<meta name="theme-color" content="#f4f3ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171614" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23171717'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' fill='%23f4f3ee' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+
 <style>
   :root {
-    --bg: #fbfbfa;
-    --fg: #1a1a1a;
-    --meta: #6f6f6f;
-    --rule: #e4e4e2;
+    color-scheme: light dark;
+
+    --bg:        #f4f3ee;
+    --surface:   #fbfaf8;
+    --text-100:  #171717;
+    --text-200:  #57534e;
+    --text-300:  #8a857c;
+    --line:      #dcd9d0;
+    --line-firm: #b9b4a8;
+
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+
+    --ease: cubic-bezier(.645, .045, .355, 1);
+    --transition: 250ms var(--ease);
+
+    --column: 44rem;
   }
+
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #111110;
-      --fg: #e8e8e6;
-      --meta: #8f8f8c;
-      --rule: #2a2a28;
+      --bg:        #171614;
+      --surface:   #1e1c19;
+      --text-100:  #f2f1ec;
+      --text-200:  #a8a29e;
+      --text-300:  #78716c;
+      --line:      #2e2c28;
+      --line-firm: #46423c;
     }
   }
 
-  * { box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { overflow-y: scroll; }
 
   body {
     margin: 0;
     background: var(--bg);
-    color: var(--fg);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    line-height: 1.65;
+    color: var(--text-200);
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   main {
-    max-width: 34rem;
+    max-width: var(--column);
     margin: 0 auto;
-    padding: 7rem 1.5rem 8rem;
+    padding: clamp(4rem, 12vw, 7.5rem) 1.5rem 6rem;
   }
 
-  a {
+  h1, h2, h3 { color: var(--text-100); margin: 0; line-height: 1.2; }
+
+  p { margin: 0; }
+
+  /* ---------- hero ---------- */
+
+  .name {
+    font-size: clamp(2.25rem, 7vw, 3.25rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  .tagline {
+    font-size: clamp(1.15rem, 3vw, 1.4rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 0.5rem;
+    max-width: 26ch;
+  }
+
+  .intro { margin-top: 1.75rem; }
+  .intro + .intro { margin-top: 1rem; }
+
+  .status {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-300);
+    margin-top: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .status::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-300);
+    flex: none;
+  }
+
+  /* ---------- link pills ---------- */
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text-200);
+    font-size: 0.8125rem;
+    text-decoration: none;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+  }
+
+  .pill:hover,
+  .pill:focus-visible {
+    background: var(--text-100);
+    border-color: var(--text-100);
+    color: var(--bg);
+    outline: none;
+  }
+
+  .pill svg { width: 11px; height: 11px; flex: none; }
+
+  /* ---------- sections ---------- */
+
+  section { margin-top: 5rem; }
+
+  .label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .label h2 {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-300);
+    white-space: nowrap;
+  }
+
+  .label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ---------- project cards ---------- */
+
+  .cards { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .card {
+    position: relative;
+    display: block;
+    padding: 1.125rem 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
     color: inherit;
     text-decoration: none;
-    border-bottom: 1px solid var(--rule);
-  }
-  a:hover { border-bottom-color: var(--fg); }
-
-  h1 {
-    font-size: 15px;
-    font-weight: 600;
-    margin: 0;
-    letter-spacing: 0.01em;
+    transition: background var(--transition), border-color var(--transition);
   }
 
-  .intro {
-    color: var(--meta);
-    margin: 0.3rem 0 0;
-    max-width: 30rem;
+  a.card:hover,
+  a.card:focus-visible {
+    background: var(--surface);
+    border-color: var(--line-firm);
+    outline: none;
   }
 
-  section { margin-top: 4.5rem; }
+  a.card { padding-right: 3rem; }
 
-  h2 {
-    font-size: 11px;
+  .card h3 { font-size: 1.0625rem; font-weight: 600; }
+
+  .card .meta {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-300);
+    margin: 0.35rem 0 0.7rem;
+  }
+
+  .card .body { font-size: 0.9375rem; }
+
+  .arrow {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.25rem;
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    color: var(--text-300);
+    transition: color var(--transition);
+  }
+
+  a.card:hover .arrow,
+  a.card:focus-visible .arrow { color: var(--text-100); }
+
+  .arrow line {
+    transform: translateX(4px) scaleX(0);
+    transform-origin: right center;
+    transition: transform var(--transition);
+  }
+
+  .arrow polyline {
+    transform: translateX(-2px);
+    transition: transform var(--transition);
+  }
+
+  a.card:hover .arrow line,
+  a.card:focus-visible .arrow line { transform: translateX(0) scaleX(1); }
+
+  a.card:hover .arrow polyline,
+  a.card:focus-visible .arrow polyline { transform: translateX(0); }
+
+  /* ---------- two-column rows ---------- */
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .row:last-child { border-bottom: 1px solid var(--line); }
+
+  .row .primary { color: var(--text-100); font-weight: 500; }
+  .row .secondary { font-size: 0.875rem; margin-top: 0.1rem; }
+
+  .row .right {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-300);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .row .key {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-300);
+    flex: none;
+    width: 7.5rem;
+  }
+
+  .row .val { font-size: 0.9375rem; }
+
+  /* ---------- certifications ---------- */
+
+  details {
+    border-top: 1px solid var(--line);
+  }
+
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+
+  summary {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 0;
+    cursor: pointer;
+    list-style: none;
+    color: var(--text-100);
     font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--meta);
-    margin: 0 0 1.75rem;
+    transition: color var(--transition);
   }
 
-  .item { margin-bottom: 2.5rem; }
-  .item:last-child { margin-bottom: 0; }
+  summary::-webkit-details-marker { display: none; }
 
-  .item h3 {
-    font-size: 15px;
-    font-weight: 600;
+  summary:hover { color: var(--text-200); }
+
+  summary:focus-visible { outline: 1px solid var(--line-firm); outline-offset: 3px; }
+
+  .count {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-300);
+    margin-left: auto;
+  }
+
+  .chevron {
+    width: 10px;
+    height: 10px;
+    fill: none;
+    stroke: var(--text-300);
+    stroke-width: 2;
+    flex: none;
+    transition: transform var(--transition);
+  }
+
+  details[open] .chevron { transform: rotate(90deg); }
+
+  details ul {
     margin: 0;
+    padding: 0 0 1.1rem 1.75rem;
+    list-style: none;
+    font-size: 0.9375rem;
   }
 
-  .item .meta {
-    color: var(--meta);
-    margin: 0.15rem 0 0.6rem;
-  }
+  details li { margin-bottom: 0.4rem; }
+  details li:last-child { margin-bottom: 0; }
+  details li span { font-family: var(--mono); font-size: 0.75rem; color: var(--text-300); }
 
-  .item p { margin: 0; }
+  /* ---------- closing + footer ---------- */
 
-  .item .link { display: inline-block; margin-top: 0.6rem; }
+  .closing { margin-top: 5rem; }
 
-  dl { margin: 0; }
-  dt {
-    color: var(--meta);
-    float: left;
-    width: 8rem;
-    clear: left;
-  }
-  dd { margin: 0 0 0.75rem 8rem; }
-  dd:last-child { margin-bottom: 0; }
-
-  ul { margin: 0; padding: 0; list-style: none; }
-  li { margin-bottom: 0.55rem; }
-  li:last-child { margin-bottom: 0; }
-  li span { color: var(--meta); }
+  .closing a { color: var(--text-100); }
 
   footer {
-    margin-top: 4.5rem;
-    padding-top: 2.25rem;
-    border-top: 1px solid var(--rule);
-    color: var(--meta);
+    margin-top: 3rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
   }
-  footer a { margin-right: 1.25rem; }
+
+  footer a { color: var(--text-300); }
+  footer .updated { margin-left: auto; color: var(--text-300); }
+
+  /* ---------- inline links ---------- */
+
+  .u {
+    position: relative;
+    color: var(--text-100);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .u::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    max-width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: max-width var(--transition);
+  }
+
+  .u:hover::after,
+  .u:focus-visible::after { max-width: 100%; }
+
+  .u:focus-visible { outline: none; }
+
+  /* ---------- entrance ---------- */
+
+  .reveal {
+    opacity: 0;
+    animation: rise 700ms var(--ease) forwards;
+  }
+
+  .reveal:nth-child(1) { animation-delay:  50ms; }
+  .reveal:nth-child(2) { animation-delay: 150ms; }
+  .reveal:nth-child(3) { animation-delay: 250ms; }
+  .reveal:nth-child(4) { animation-delay: 350ms; }
+  .reveal:nth-child(5) { animation-delay: 450ms; }
+  .reveal:nth-child(6) { animation-delay: 550ms; }
+  .reveal:nth-child(7) { animation-delay: 650ms; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(12px); filter: blur(4px); }
+    to   { opacity: 1; transform: none;             filter: blur(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; animation: none; }
+    * { transition-duration: 1ms !important; }
+  }
+
+  /* ---------- narrow ---------- */
 
   @media (max-width: 34rem) {
-    main { padding-top: 4rem; }
-    dt { float: none; width: auto; }
-    dd { margin-left: 0; margin-bottom: 1.25rem; }
+    section { margin-top: 3.5rem; }
+
+    .row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .row .right { text-align: left; }
+    .row .key { width: auto; }
   }
 </style>
 </head>
 <body>
 <main>
 
-  <header>
-    <h1>Rohith Srikumar Menon</h1>
+  <header class="reveal">
+    <h1 class="name">Rohith Srikumar Menon</h1>
+    <p class="tagline">I build machine learning and data projects.</p>
+
     <p class="intro">
-      MCA student specialising in Generative AI at SRM Institute of Science and
-      Technology, Chennai. I work on reinforcement learning, data analysis, and
-      business intelligence.
+      I'm an MCA student specialising in Generative AI at SRM Institute of Science
+      and Technology, Chennai. My work sits across three areas: training agents with
+      reinforcement learning, analysing datasets in Python, and turning messy records
+      into dashboards people can actually make decisions from.
     </p>
+
+    <p class="status">Graduating May 2027 &middot; Open to internships</p>
+
+    <ul class="pills">
+      <li><a class="pill" href="mailto:rohithmenon2022@gmail.com">Email</a></li>
+      <li><a class="pill" href="https://github.com/rohith602">GitHub<svg viewBox="0 0 15 15" aria-hidden="true"><path d="M3.6 11.4 11 4H6a.5.5 0 010-1h6a.5.5 0 01.5.5v6a.5.5 0 01-1 0V4.7l-7.4 7.4a.5.5 0 01-.7-.7z" fill="currentColor" stroke="none"/></svg></a></li>
+      <li><a class="pill" href="https://www.linkedin.com/in/rohith-srikumar-menon-973026266">LinkedIn<svg viewBox="0 0 15 15" aria-hidden="true"><path d="M3.6 11.4 11 4H6a.5.5 0 010-1h6a.5.5 0 01.5.5v6a.5.5 0 01-1 0V4.7l-7.4 7.4a.5.5 0 01-.7-.7z" fill="currentColor" stroke="none"/></svg></a></li>
+      <li><a class="pill" href="https://credly.com/users/rohith-menon.fcc277ea">Credly<svg viewBox="0 0 15 15" aria-hidden="true"><path d="M3.6 11.4 11 4H6a.5.5 0 010-1h6a.5.5 0 01.5.5v6a.5.5 0 01-1 0V4.7l-7.4 7.4a.5.5 0 01-.7-.7z" fill="currentColor" stroke="none"/></svg></a></li>
+      <li><a class="pill" href="https://skills.google/public_profiles/ffb321ee-e3b7-4bbb-b681-1d85f36b0072">Google Skills<svg viewBox="0 0 15 15" aria-hidden="true"><path d="M3.6 11.4 11 4H6a.5.5 0 010-1h6a.5.5 0 01.5.5v6a.5.5 0 01-1 0V4.7l-7.4 7.4a.5.5 0 01-.7-.7z" fill="currentColor" stroke="none"/></svg></a></li>
+    </ul>
   </header>
 
-  <section>
-    <h2>Projects</h2>
+  <section class="reveal">
+    <div class="label"><h2>Projects</h2></div>
 
-    <div class="item">
-      <h3>Hummingbird — Reinforcement Learning Agent</h3>
-      <p class="meta">2026 · Unity 6, ML-Agents, PPO, Python</p>
-      <p>
-        Trained a hummingbird agent to navigate a 3D environment and collect nectar
-        using Proximal Policy Optimisation. Tuned the observation space and reward
-        structure to move the agent past an early plateau, benchmarked parallel
-        training environments on a cloud GPU to find the fastest process split, and
-        deployed the trained policy back into Unity as an ONNX model.
-      </p>
-    </div>
+    <div class="cards">
 
-    <div class="item">
-      <h3>Video Game Sales Data Analysis</h3>
-      <p class="meta">2026 · Python, pandas, Matplotlib</p>
-      <p>
-        A data visualisation project analysing global video game sales across four
-        decades. Transforms a dataset of over 16,500 records into ten charts covering
-        regional market dynamics, cross-region sales correlations, and how genre
-        popularity has shifted over time.
-      </p>
-      <a class="link" href="https://github.com/rohith602/Video-Game-Data-Analysis-Project">View on GitHub</a>
-    </div>
+      <div class="card">
+        <h3>Hummingbird &mdash; Reinforcement Learning Agent</h3>
+        <p class="meta">2026 &middot; Unity 6 &middot; ML-Agents &middot; PPO &middot; Python</p>
+        <p class="body">
+          Trained a hummingbird agent to navigate a 3D environment and collect nectar
+          using Proximal Policy Optimisation. Diagnosed an early reward plateau as an
+          observation-space problem rather than a hyperparameter one, benchmarked
+          parallel training layouts on a cloud GPU to find the fastest process split,
+          and deployed the trained policy back into Unity as an ONNX model.
+        </p>
+      </div>
 
-    <div class="item">
-      <h3>Hospital Emergency Room Dashboard</h3>
-      <p class="meta">2025 · Power BI, DAX, Excel</p>
-      <p>
-        A four-page interactive dashboard built over roughly 9,200 emergency room
-        patient records. Tracks average wait time, admission rate, and patient
-        satisfaction, with breakdowns by department referral, age group, and time of
-        day so staffing gaps can be identified.
-      </p>
-    </div>
-  </section>
+      <a class="card" href="https://github.com/rohith602/Video-Game-Data-Analysis-Project">
+        <h3>Video Game Sales Data Analysis</h3>
+        <p class="meta">2026 &middot; Python &middot; pandas &middot; Matplotlib</p>
+        <p class="body">
+          A visualisation project covering four decades of global video game sales.
+          Transforms a dataset of over 16,500 records into ten charts on regional
+          market dynamics, cross-region sales correlation, and how genre popularity
+          shifted over time.
+        </p>
+        <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
 
-  <section>
-    <h2>Education</h2>
-    <div class="item">
-      <h3>Master of Computer Applications — Generative AI</h3>
-      <p class="meta">SRM Institute of Science and Technology, Kattankulathur · 2025–2027 · CGPA 8.68</p>
-    </div>
-    <div class="item">
-      <h3>Bachelor of Computer Applications</h3>
-      <p class="meta">SRM Institute of Science and Technology, Kattankulathur · 2022–2025 · CGPA 8.22</p>
+      <div class="card">
+        <h3>Hospital Emergency Room Dashboard</h3>
+        <p class="meta">2025 &middot; Power BI &middot; DAX &middot; Excel</p>
+        <p class="body">
+          A four-page interactive dashboard built over roughly 9,200 emergency room
+          patient records. Tracks average wait time, admission rate and patient
+          satisfaction, broken down by department referral, age group and time of day
+          so staffing gaps become visible.
+        </p>
+      </div>
+
     </div>
   </section>
 
-  <section>
-    <h2>Skills</h2>
-    <dl>
-      <dt>AI and GenAI</dt>
-      <dd>Gemini API, Streamlit, Vertex AI, IBM watsonx.ai, Claude</dd>
-      <dt>Data</dt>
-      <dd>Power BI, Tableau, SQL, Excel, pandas</dd>
-      <dt>Programming</dt>
-      <dd>Python, C#</dd>
-      <dt>Cloud</dt>
-      <dd>AWS, Google Cloud, IBM Cloud</dd>
-      <dt>Tools</dt>
-      <dd>Unity, Git, GitHub, VS Code, Jupyter Notebook</dd>
-    </dl>
+  <section class="reveal">
+    <div class="label"><h2>Education</h2></div>
+
+    <div class="row">
+      <div>
+        <div class="primary">Master of Computer Applications &mdash; Generative AI</div>
+        <div class="secondary">SRM Institute of Science and Technology, Kattankulathur</div>
+      </div>
+      <div class="right">2025&ndash;2027<br>CGPA 8.68</div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="primary">Bachelor of Computer Applications</div>
+        <div class="secondary">SRM Institute of Science and Technology, Kattankulathur</div>
+      </div>
+      <div class="right">2022&ndash;2025<br>CGPA 8.22</div>
+    </div>
   </section>
 
-  <section>
-    <h2>Certifications</h2>
-    <ul>
-      <li>Google Cloud Data Analytics Certificate <span>— Google Cloud, 2025</span></li>
-      <li>Develop GenAI Apps with Gemini and Streamlit <span>— Google Cloud, 2025</span></li>
-      <li>Prompt Design in Vertex AI <span>— Google Cloud, 2025</span></li>
-      <li>Inspect Rich Documents with Gemini Multimodality and Multimodal RAG <span>— Google Cloud, 2025</span></li>
-      <li>AWS Academy Graduate — Cloud Foundations <span>— AWS Academy, 2024</span></li>
-      <li>AWS Academy Graduate — Data Engineering <span>— AWS Academy, 2024</span></li>
-      <li>AI Internship <span>— IBM SkillsBuild, EduNet Foundation and AICTE, 2026</span></li>
-      <li>GenAI Powered Data Analytics Job Simulation <span>— Tata iQ on Forage, 2026</span></li>
-      <li>Data Analytics Job Simulation <span>— Deloitte Australia on Forage, 2026</span></li>
-      <li>Google AI Essentials <span>— Coursera, 2026</span></li>
-      <li>Google Prompting Essentials <span>— Coursera, 2026</span></li>
-      <li>Claude 101 <span>— Anthropic Academy, 2026</span></li>
-      <li>AR/VR Development with Unity <span>— EduSkills and AICTE, 2026</span></li>
-      <li>AWS Data Engineering Virtual Internship <span>— EduSkills and AICTE, 2024</span></li>
-      <li>Zero Trust Cloud Security <span>— Zscaler and AICTE, 2025</span></li>
-    </ul>
+  <section class="reveal">
+    <div class="label"><h2>Skills</h2></div>
+
+    <div class="row">
+      <div class="key">AI / GenAI</div>
+      <div class="val">Gemini API, Streamlit, Vertex AI, IBM watsonx.ai, Claude</div>
+    </div>
+    <div class="row">
+      <div class="key">Data</div>
+      <div class="val">Power BI, Tableau, SQL, Excel, pandas</div>
+    </div>
+    <div class="row">
+      <div class="key">Programming</div>
+      <div class="val">Python, C#</div>
+    </div>
+    <div class="row">
+      <div class="key">Cloud</div>
+      <div class="val">AWS, Google Cloud, IBM Cloud</div>
+    </div>
+    <div class="row">
+      <div class="key">Tools</div>
+      <div class="val">Unity, Git, GitHub, VS Code, Jupyter Notebook</div>
+    </div>
   </section>
+
+  <section class="reveal">
+    <div class="label"><h2>Certifications</h2></div>
+
+    <details>
+      <summary>
+        <svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><polyline points="4 2 8 6 4 10"/></svg>
+        Google Cloud
+        <span class="count">4</span>
+      </summary>
+      <ul>
+        <li>Google Cloud Data Analytics Certificate <span>2025</span></li>
+        <li>Develop GenAI Apps with Gemini and Streamlit <span>2025</span></li>
+        <li>Prompt Design in Vertex AI <span>2025</span></li>
+        <li>Inspect Rich Documents with Gemini Multimodality and Multimodal RAG <span>2025</span></li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>
+        <svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><polyline points="4 2 8 6 4 10"/></svg>
+        AICTE / EduSkills
+        <span class="count">3</span>
+      </summary>
+      <ul>
+        <li>AR/VR Development with Unity, Cohort 16 <span>2026</span></li>
+        <li>Zero Trust Cloud Security, Zscaler <span>2025</span></li>
+        <li>AWS Data Engineering Virtual Internship <span>2024</span></li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>
+        <svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><polyline points="4 2 8 6 4 10"/></svg>
+        AWS Academy
+        <span class="count">2</span>
+      </summary>
+      <ul>
+        <li>AWS Academy Graduate &mdash; Cloud Foundations <span>2024</span></li>
+        <li>AWS Academy Graduate &mdash; Data Engineering <span>2024</span></li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>
+        <svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><polyline points="4 2 8 6 4 10"/></svg>
+        Forage
+        <span class="count">2</span>
+      </summary>
+      <ul>
+        <li>GenAI Powered Data Analytics Job Simulation, Tata iQ <span>2026</span></li>
+        <li>Data Analytics Job Simulation, Deloitte Australia <span>2026</span></li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>
+        <svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><polyline points="4 2 8 6 4 10"/></svg>
+        Coursera
+        <span class="count">2</span>
+      </summary>
+      <ul>
+        <li>Google AI Essentials <span>2026</span></li>
+        <li>Google Prompting Essentials <span>2026</span></li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>
+        <svg class="chevron" viewBox="0 0 12 12" aria-hidden="true"><polyline points="4 2 8 6 4 10"/></svg>
+        Other
+        <span class="count">2</span>
+      </summary>
+      <ul>
+        <li>AI Internship, IBM SkillsBuild &middot; EduNet Foundation and AICTE <span>2026</span></li>
+        <li>Claude 101, Anthropic Academy <span>2026</span></li>
+      </ul>
+    </details>
+  </section>
+
+  <p class="closing reveal">
+    If you have an interesting problem to solve, or a role you think I'd fit,
+    <a class="u" href="mailto:rohithmenon2022@gmail.com">get in touch</a>.
+  </p>
 
   <footer>
-    <a href="mailto:rohithmenon2022@gmail.com">Email</a>
-    <a href="https://github.com/rohith602">GitHub</a>
-    <a href="https://www.linkedin.com/in/rohith-srikumar-menon-973026266">LinkedIn</a>
-    <a href="https://credly.com/users/rohith-menon.fcc277ea">Credly</a>
-    <a href="https://skills.google/public_profiles/ffb321ee-e3b7-4bbb-b681-1d85f36b0072">Google Skills</a>
+    <a class="u" href="mailto:rohithmenon2022@gmail.com">Email</a>
+    <a class="u" href="https://github.com/rohith602">GitHub</a>
+    <a class="u" href="https://www.linkedin.com/in/rohith-srikumar-menon-973026266">LinkedIn</a>
+    <span class="updated">Chennai, India</span>
   </footer>
 
 </main>
