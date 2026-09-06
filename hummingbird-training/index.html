@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hummingbird ML-Agents: On-device vs. rented GPU training</title>
+<style>
+  body { background:#121212; color:#eaeaea; font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; line-height: 1.5; }
+  h1 { font-size: 1.5rem; }
+  img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+  th, td { border: 1px solid #444; padding: 8px 12px; text-align: left; }
+  th { background: #1e1e1e; }
+  code { background: #1e1e1e; padding: 2px 5px; border-radius: 4px; }
+  .note { color: #aaa; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<h1>Hummingbird ML-Agents: on-device vs. rented GPU training</h1>
+<p>Reward-curve comparison for a PPO agent trained on the Unity Learn "Hummingbird" mini project, showing the original on-device run (<code>HB_01</code>) against a later retrain on a rented GPU instance (<code>HB_16</code>) with a fixed observation gap (added velocity via stacked frames) and a 112-parallel-arena setup.</p>
+
+<img src="data:image/png;base64,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" alt="Reward comparison chart: yellow line is on-device training, pink line is rented GPU training">
+
+<table>
+<tr><th></th><th>HB_01 (laptop, CPU-only)</th><th>HB_16 (rented Jarvis Labs L4)</th></tr>
+<tr><td>Steps trained</td><td>5,000,024</td><td>50,000,000 (10x more)</td></tr>
+<tr><td>Final / best reward</td><td>41.29</td><td>96.58 / 97.728</td></tr>
+<tr><td>Active compute time</td><td>31.44 hours (6 stop/resume sessions)</td><td>5.11 hours (2 sessions)</td></tr>
+<tr><td>Real calendar span</td><td>38.18 hours (~1.5 days)</td><td>~12.7 hours (same day)</td></tr>
+<tr><td>Average throughput</td><td>~44 steps/sec</td><td>~2,717 steps/sec</td></tr>
+</table>
+
+<p><strong>Bottom line:</strong> 10x the training steps in about 1/6th the active compute time &mdash; roughly a 60x per-step speedup. Most of that came from running 112 parallel simulation arenas across 28 rented vCPUs (Unity physics is CPU-bound); the GPU itself only contributed ~3.4% of the speedup, confirmed by a direct CPU-vs-CUDA benchmark on the same rented box.</p>
+
+<p class="note">Generated from each run's own TensorBoard event-file timestamps, not estimated. Part of the Hummingbird ML-Agents mini project.</p>
+</body>
+</html>
