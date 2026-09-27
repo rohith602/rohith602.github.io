@@ -317,8 +317,7 @@ a { color: inherit; text-decoration: none; }
   backdrop-filter: blur(8px);
   font-family: var(--mono);
   font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
   color: var(--t2);
 }
 
@@ -571,10 +570,28 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
 .p-body { position: relative; z-index: 1; }
 .p-vis  { position: relative; z-index: 1; }
 
+.shot { margin: 0 0 1rem; }
+.shot a {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-2);
+  transition: border-color var(--t-fast);
+}
+.shot a:hover, .shot a:focus-visible { border-color: var(--accent); }
+.shot img { display: block; width: 100%; height: auto; }
+.shot figcaption {
+  margin-top: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--t3);
+}
+
 .p-num {
   font-family: var(--mono);
   font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   color: var(--accent);
 }
 
@@ -670,8 +687,7 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
   margin-bottom: 1rem;
   font-family: var(--mono);
   font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
   color: var(--t3);
 }
 
@@ -1173,6 +1189,10 @@ footer a:hover { color: var(--accent); }
         </div>
 
         <div class="p-vis">
+          <figure class="shot">
+            <a href="img/hummingbird-race.jpg"><img src="img/hummingbird-race.jpg" width="1400" height="646" loading="lazy" decoding="async" alt="Split screen on an Android phone: the cloud-trained agent on the left and the laptop-trained agent on the right, each flying to flowers on a low-poly island"></a>
+            <figcaption>Both trained agents racing on an Android phone</figcaption>
+          </figure>
           <div class="panel">
             <div class="panel-head"><span>Mean reward, two training runs</span><b>2.35×</b></div>
             <div class="bars">
@@ -1233,6 +1253,10 @@ footer a:hover { color: var(--accent); }
         </div>
 
         <div class="p-vis">
+          <figure class="shot">
+            <a href="img/vgsales-regional.jpg"><img src="img/vgsales-regional.jpg" width="1000" height="600" loading="lazy" decoding="async" alt="Line chart of video game sales per year by region, 1980 to 2016, with North America highest and peaking around 2008"></a>
+            <figcaption>Regional sales by year, drawn by the project's own code</figcaption>
+          </figure>
           <div class="panel">
             <div class="panel-head"><span>Share of global units by region</span><b>16.5k rows</b></div>
             <div class="bars">
@@ -1303,6 +1327,10 @@ footer a:hover { color: var(--accent); }
         </div>
 
         <div class="p-vis">
+          <figure class="shot">
+            <a href="img/er-dashboard.jpg"><img src="img/er-dashboard.jpg" width="1400" height="864" loading="lazy" decoding="async" alt="Power BI dashboard page with patient count, average wait time, satisfaction and referral cards above charts by age, gender, race, department and day of week"></a>
+            <figcaption>The Consolidated View page of the report</figcaption>
+          </figure>
           <div class="panel">
             <div class="panel-head"><span>Dashboard at a glance</span><b>4 pages</b></div>
             <div class="kpis">
