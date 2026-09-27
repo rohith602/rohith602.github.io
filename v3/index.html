@@ -17,28 +17,53 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23111114'/%3E%3Cpath d='M9 9l14 14M23 9L9 23' stroke='%237fb0ec' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 
+<script>try { if (localStorage.getItem("v3-theme") === "light") document.documentElement.dataset.theme = "light"; } catch (e) {}</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
 
 <style>
+/* fixed print: the same in both themes */
 :root {
-  color-scheme: light;
   --case:   #111114;   /* the black plastic case */
   --silver: #c3c8d2;   /* type printed on the case band */
   --silver-dim: #9aa0ad;
-  --paper:  #e6e8ec;   /* the printed insert */
-  --paper-2:#d8dbe1;
-  --ink:    #15161a;
-  --ink-2:  #474c59;
-  --rule:   #b4b9c3;
+  --light:  #e6e8ec;   /* light print on the case band and the disc */
   --disc:   #2d33a6;   /* the disc's blue-violet underside */
-  --cross:  #7fb0ec;
   --circle: #d9434d;
+
+  /* the insert, dark by default */
+  color-scheme: dark;
+  --paper:  #1a1c24;   /* insert surface */
+  --paper-2:#242733;   /* panels and meter tracks */
+  --ink:    #e6e8ec;   /* text and printed rules */
+  --ink-2:  #a9aebb;
+  --rule:   #3c4050;
+  --link:   #e6e8ec;   /* links are ink; colour lives in whole regions */
+  --track:  #444859;
+  --ink-hover: #ffffff;
+  --edge:   #4a4f5e;   /* keeps the dark insert distinct from the black case */
+  --cross:  #3f6fc4;   /* the button behind it is light in this theme */
 
   --title: "Saira Condensed", "Arial Narrow", sans-serif;
   --text: "Barlow", "Segoe UI", system-ui, sans-serif;
   --ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* the printed-paper insert, chosen with the header switch */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --paper:  #e6e8ec;
+  --paper-2:#d8dbe1;
+  --ink:    #15161a;
+  --ink-2:  #474c59;
+  --rule:   #b4b9c3;
+  --link:   #2d33a6;
+  --track:  #d8dbe1;
+  --ink-hover: #26282f;
+  --edge:   #111114;
+  --cross:  #7fb0ec;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -51,17 +76,17 @@ body {
   color: var(--ink);
   font: 400 1.0625rem/1.6 var(--text);
   font-variant-numeric: tabular-nums;
-  caret-color: var(--disc);
+  caret-color: var(--link);
   -webkit-font-smoothing: antialiased;
   padding: 0 8px 8px;
 }
 
 ::selection { background: var(--ink); color: var(--paper); }
 
-a { color: var(--disc); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+a { color: var(--link); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 a:hover { text-decoration-thickness: 2px; }
 
-:focus-visible { outline: 2px solid var(--disc); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
 
 img { display: block; max-width: 100%; height: auto; }
 
@@ -79,6 +104,7 @@ p { margin: 0; }
   max-width: 78rem;
   margin: 0 auto;
   background: var(--paper);
+  outline: 1px solid var(--edge);
 }
 
 .wrap { padding-left: clamp(16px, 5vw, 64px); padding-right: clamp(16px, 5vw, 64px); }
@@ -107,7 +133,7 @@ p { margin: 0; }
   font: 700 1.25rem/1 var(--title);
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--paper);
+  color: var(--light);
   text-decoration: none;
 }
 
@@ -136,8 +162,21 @@ p { margin: 0; }
   transform: translate(0, -50%);
 }
 .band .pointer { font: 600 1rem/2.5 var(--title); letter-spacing: 0.04em; text-transform: uppercase; color: var(--silver); }
-.band .pointer:hover, .band .pointer:focus-visible { color: var(--paper); }
-.band :focus-visible { outline-color: var(--paper); }
+.band .pointer:hover, .band .pointer:focus-visible { color: var(--light); }
+.theme {
+  min-height: 32px;
+  padding: 0 16px;
+  border: 2px solid var(--silver-dim);
+  background: transparent;
+  color: var(--silver);
+  font: 600 0.9375rem/1 var(--title);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.theme:hover { color: var(--light); border-color: var(--light); }
+.theme:active { background: var(--light); color: var(--case); border-color: var(--light); }
+.band :focus-visible { outline-color: var(--light); }
 
 /* ---------- buttons: pressed inverts ---------- */
 .btn {
@@ -153,7 +192,7 @@ p { margin: 0; }
   text-decoration: none;
   cursor: pointer;
 }
-.btn:hover { text-decoration: none; background: #26282f; border-color: #26282f; }
+.btn:hover { text-decoration: none; background: var(--ink-hover); border-color: var(--ink-hover); }
 .btn:active { background: var(--paper); color: var(--ink); border-color: var(--ink); }
 .btn.alt { background: transparent; color: var(--ink); }
 .btn.alt:hover { background: var(--paper-2); }
@@ -161,16 +200,15 @@ p { margin: 0; }
 .btn svg { width: 18px; height: 18px; flex: none; }
 
 /* ---------- front cover: the art is the cover, the title sits on the case band ---------- */
-.front { background: var(--case); }
-.front img { width: 100%; height: clamp(216px, 38vw, 440px); object-fit: cover; object-position: 50% 0; }
+.front { background: var(--case); border-bottom: 2px solid var(--ink); }
 .titlebar {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   gap: 8px 24px;
-  padding-top: 24px; padding-bottom: 24px;
-  color: var(--paper);
+  padding-top: 64px; padding-bottom: 40px;
+  color: var(--light);
 }
 .cover h1 {
   font-size: clamp(2.75rem, 7.4vw, 6rem);
@@ -178,7 +216,6 @@ p { margin: 0; }
   letter-spacing: -0.01em;
   text-transform: uppercase;
 }
-.titlebar p { font-size: 0.875rem; color: var(--silver-dim); }
 .cover-text {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
@@ -212,7 +249,7 @@ section .sub { margin-top: 16px; max-width: 40em; color: var(--ink-2); }
 .shots { display: grid; gap: 24px; }
 .shot { margin: 0; }
 .shot a { display: block; border: 2px solid var(--ink); }
-.shot a:hover, .shot a:focus-visible { outline: 2px solid var(--disc); outline-offset: 3px; }
+.shot a:hover, .shot a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
 
 .game h3 { font-size: clamp(1.75rem, 3.4vw, 2.25rem); text-transform: uppercase; }
 .game .blurb { margin-top: 16px; }
@@ -242,7 +279,7 @@ section .sub { margin-top: 16px; max-width: 40em; color: var(--ink-2); }
 }
 .meter { display: grid; grid-template-columns: 6.5em 1fr 3.5em; gap: 8px; align-items: center; }
 .meter + .meter { margin-top: 8px; }
-.meter .track { height: 8px; background: var(--paper-2); }
+.meter .track { height: 8px; background: var(--track); }
 .meter .fill { display: block; height: 100%; background: var(--ink); }
 .meter .v { text-align: right; }
 
@@ -288,27 +325,27 @@ section .sub { margin-top: 16px; max-width: 40em; color: var(--ink-2); }
   position: relative;
   overflow: hidden;
   background: var(--disc);
-  color: var(--paper);
+  color: var(--light);
   border-top: 0;
 }
 .disc .wrap { position: relative; z-index: 1; }
 .disc-mark { position: absolute; right: -96px; top: 50%; width: 480px; height: 480px; transform: translateY(-50%); }
-.disc h2 { color: var(--paper); }
+.disc h2 { color: var(--light); }
 .disc .sub { color: #d3d6f2; }
 .disc .actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
-.disc .btn { background: var(--paper); color: var(--disc); border-color: var(--paper); }
+.disc .btn { background: var(--light); color: var(--disc); border-color: var(--light); }
 .disc .btn:hover { background: #ffffff; border-color: #ffffff; }
-.disc .btn:active { background: var(--disc); color: var(--paper); }
-.disc .btn.alt { background: transparent; color: var(--paper); }
+.disc .btn:active { background: var(--disc); color: var(--light); }
+.disc .btn.alt { background: transparent; color: var(--light); }
 .disc .btn.alt:hover { background: rgba(255, 255, 255, 0.12); }
-.disc :focus-visible { outline-color: var(--paper); }
+.disc :focus-visible { outline-color: var(--light); }
 
 /* ---------- legal strip ---------- */
 .legal { background: var(--case); color: var(--silver-dim); font-size: 0.9375rem; padding-bottom: env(safe-area-inset-bottom, 0px); }
 .legal .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 32px; padding-bottom: 32px; }
 .legal ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 24px; }
 .legal a { color: var(--silver); }
-.legal :focus-visible { outline-color: var(--paper); }
+.legal :focus-visible { outline-color: var(--light); }
 
 /* ---------- smaller screens ---------- */
 @media (max-width: 60rem) {
@@ -320,6 +357,9 @@ section .sub { margin-top: 16px; max-width: 40em; color: var(--ink-2); }
 @media (max-width: 40rem) {
   .band { position: static; }
   .band ul { margin-left: -16px; }
+  .band .name { flex: 1; }
+  .theme { order: 1; }
+  .band nav { order: 2; flex-basis: 100%; }
   .timeline li { grid-template-columns: 1fr; gap: 8px; }
   .disc { padding-bottom: 272px; }
   .disc-mark { right: -72px; top: auto; bottom: 24px; transform: none; width: 232px; height: 232px; }
@@ -353,6 +393,7 @@ section .sub { margin-top: 16px; max-width: 40em; color: var(--ink-2); }
         <li><a class="pointer" href="#contact">Contact</a></li>
       </ul>
     </nav>
+    <button class="theme" type="button">Light mode</button>
   </div>
 </header>
 
@@ -360,11 +401,8 @@ section .sub { margin-top: 16px; max-width: 40em; color: var(--ink-2); }
 
 <div class="cover" id="top">
   <div class="front">
-    <img src="img/hummingbird-cover.jpg" width="1400" height="540" fetchpriority="high"
-         alt="Split screen on an Android phone: the cloud-trained agent, labelled Rented GPU 96.58 and leading, on the left, and the laptop-trained agent, labelled On-device 41.29, on the right, each flying to flowers on a low-poly island">
     <div class="titlebar wrap">
       <h1>Rohith Srikumar Menon</h1>
-      <p>Cover: both trained Hummingbird agents racing on an Android phone.</p>
     </div>
   </div>
   <div class="cover-text wrap">
@@ -649,6 +687,17 @@ section .sub { margin-top: 16px; max-width: 40em; color: var(--ink-2); }
 </div>
 
 <script>
+  var root = document.documentElement;
+  var themeBtn = document.querySelector(".theme");
+  function syncTheme() { themeBtn.textContent = root.dataset.theme === "light" ? "Dark mode" : "Light mode"; }
+  themeBtn.addEventListener("click", function () {
+    if (root.dataset.theme === "light") delete root.dataset.theme;
+    else root.dataset.theme = "light";
+    try { localStorage.setItem("v3-theme", root.dataset.theme || "dark"); } catch (e) {}
+    syncTheme();
+  });
+  syncTheme();
+
   var navLinks = document.querySelectorAll(".band .pointer");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
