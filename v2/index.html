@@ -37,7 +37,7 @@
   --border-2:   #d3ccc4;
   --t1:         #18181b;
   --t2:         #52525b;
-  --t3:         #8b857c;
+  --t3:         #736d65;
   --accent:     #d94f18;
   --accent-2:   #ef8a24;
   --accent-ink: #ffffff;
@@ -72,7 +72,7 @@
     --border-2:   #3a3a45;
     --t1:         #f4f4f5;
     --t2:         #a1a1aa;
-    --t3:         #71717a;
+    --t3:         #86868f;
     --accent:     #ff6b35;
     --accent-2:   #ffa03d;
     --accent-ink: #0a0a0c;
@@ -94,7 +94,7 @@
   --border-2:   #3a3a45;
   --t1:         #f4f4f5;
   --t2:         #a1a1aa;
-  --t3:         #71717a;
+  --t3:         #86868f;
   --accent:     #ff6b35;
   --accent-2:   #ffa03d;
   --accent-ink: #0a0a0c;
@@ -353,10 +353,7 @@ a { color: inherit; text-decoration: none; }
 
 .hero h1 .line2 {
   display: block;
-  background: linear-gradient(100deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent);
 }
 
 .role {
@@ -484,7 +481,7 @@ a { color: inherit; text-decoration: none; }
 .stat .cap {
   margin-top: 0.6rem;
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--t3);
@@ -576,7 +573,7 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
 
 .p-num {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   color: var(--accent);
 }
@@ -600,7 +597,7 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
   border-radius: 6px;
   background: var(--surface-2);
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--t3);
 }
 
@@ -653,7 +650,7 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
   align-items: center;
   gap: 0.4rem;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--t3);
 }
 
@@ -672,7 +669,7 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
   gap: 1rem;
   margin-bottom: 1rem;
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--t3);
@@ -710,9 +707,9 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
 
 /* region bars */
 .bars { display: flex; flex-direction: column; gap: 0.85rem; }
-.bar-row { display: grid; grid-template-columns: 4.5rem 1fr 2.75rem; align-items: center; gap: 0.75rem; }
-.bar-row .lbl { font-family: var(--mono); font-size: 0.72rem; color: var(--t2); }
-.bar-row .val { font-family: var(--mono); font-size: 0.72rem; color: var(--t3); text-align: right; }
+.bar-row { display: grid; grid-template-columns: 5.5rem 1fr 2.75rem; align-items: center; gap: 0.75rem; }
+.bar-row .lbl { font-family: var(--mono); font-size: 0.75rem; color: var(--t2); }
+.bar-row .val { font-family: var(--mono); font-size: 0.75rem; color: var(--t3); text-align: right; }
 
 .bar-track {
   height: 7px;
@@ -722,6 +719,7 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
 }
 
 .bar-fill {
+  display: block;
   height: 100%;
   width: 0;
   border-radius: 99px;
@@ -754,7 +752,7 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
 .kpi .l {
   margin-top: 0.4rem;
   font-family: var(--mono);
-  font-size: 0.63rem;
+  font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--t3);
@@ -768,7 +766,7 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
   border: 1px solid var(--border);
   border-radius: 6px;
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   color: var(--t3);
 }
 
@@ -809,7 +807,7 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
 
 .tl-when {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--accent);
 }
 
@@ -882,7 +880,7 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
   background: var(--surface);
   color: var(--t2);
   font-family: var(--mono);
-  font-size: 0.73rem;
+  font-size: 0.75rem;
   cursor: pointer;
   transition: all var(--t-fast);
 }
@@ -921,7 +919,7 @@ section[id] { padding-block: clamp(4.5rem, 11vw, 7.5rem); }
   justify-content: space-between;
   gap: 0.75rem;
   font-family: var(--mono);
-  font-size: 0.67rem;
+  font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1006,7 +1004,7 @@ footer .wrap {
   align-items: center;
   gap: 0.75rem 1.5rem;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--t3);
 }
 
@@ -1113,7 +1111,7 @@ footer a:hover { color: var(--accent); }
       <div class="cap">Records analysed</div>
     </div>
     <div class="stat rv rv-d2">
-      <div class="num"><span class="cu" data-to="15">0</span></div>
+      <div class="num"><span class="cu" data-to="14">0</span></div>
       <div class="cap">Certifications</div>
     </div>
     <div class="stat rv rv-d3">
@@ -1130,19 +1128,19 @@ footer a:hover { color: var(--accent); }
       <span class="eyebrow">Selected work</span>
       <h2>Three projects, three different problems</h2>
       <p>
-        One reinforcement learning agent, one dataset of 16,500 records, and one
-        dashboard built over real hospital data. Each taught me something the
-        others could not.
+        A reinforcement learning agent trained on a laptop and then on a rented
+        cloud GPU, an analysis of 16,598 video game sales records, and a Power BI
+        report over 9,216 emergency room visits.
       </p>
     </div>
 
     <div class="projects">
 
-      <!-- 01 -->
+      <!-- 01 — Hummingbird -->
       <article class="proj rv" data-spot>
         <div class="p-body">
           <div class="p-num">01 / Reinforcement Learning</div>
-          <h3>Hummingbird — a nectar-collecting agent</h3>
+          <h3>Hummingbird: a nectar-collecting agent</h3>
 
           <div class="tags">
             <span class="tag">Unity 6</span>
@@ -1150,6 +1148,7 @@ footer a:hover { color: var(--accent); }
             <span class="tag">PPO</span>
             <span class="tag">Python</span>
             <span class="tag">ONNX</span>
+            <span class="tag">Android</span>
           </div>
 
           <p class="desc">
@@ -1159,59 +1158,40 @@ footer a:hover { color: var(--accent); }
           </p>
 
           <ul class="bullets">
-            <li>Diagnosed a reward plateau as an observation-space limitation, not a hyperparameter one — a force-controlled body cannot be steered without a sense of its own velocity.</li>
+            <li>Found two reasons the first run stopped at 41.29: it ran out of steps while its learning rate decayed to zero, and it saw one frame at a time, so it could not sense its own velocity. Stacking three frames and a ten times larger step budget raised mean reward to 96.58.</li>
             <li>Profiled the run and found 95.5% of wall-clock time was Unity physics on the CPU, so a bigger GPU would have bought almost nothing.</li>
             <li>Benchmarked process layouts on a 28-vCPU cloud instance: splitting 28 arenas across 7 processes instead of 1 tripled throughput.</li>
-            <li>Exported the trained policy to ONNX and ran it back inside the Unity editor.</li>
+            <li>Exported the trained policy to ONNX. It runs inside Unity with no Python connection, in the Editor and on an Android phone.</li>
           </ul>
 
           <div class="p-links">
-            <span class="p-note">
-              <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r=".6" fill="currentColor"/></svg>
-              Repository not yet public
-            </span>
+            <a class="p-link" href="https://github.com/rohith602/HummingbirdMLAgents">
+              View repository
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
           </div>
         </div>
 
         <div class="p-vis">
           <div class="panel">
-            <div class="panel-head"><span>Mean reward per checkpoint</span><b>+41%</b></div>
-            <svg class="chart" viewBox="0 0 320 118" role="img" aria-label="Line chart: mean reward rising from 29.2 to 41.3 across five checkpoints">
-              <defs>
-                <linearGradient id="g-area" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="var(--accent)" stop-opacity=".28"/>
-                  <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-
-              <line class="grid" x1="26" y1="10"  x2="316" y2="10"/>
-              <line class="grid" x1="26" y1="55"  x2="316" y2="55"/>
-              <line class="grid" x1="26" y1="100" x2="316" y2="100"/>
-
-              <text class="axis" x="20" y="13"  text-anchor="end">45</text>
-              <text class="axis" x="20" y="58"  text-anchor="end">35</text>
-              <text class="axis" x="20" y="103" text-anchor="end">25</text>
-
-              <path class="area" d="M32,81.1 L102,40.6 L172,59.5 L242,27.6 L312,26.7 L312,100 L32,100 Z"/>
-              <polyline class="lineP" points="32,81.1 102,40.6 172,59.5 242,27.6 312,26.7"/>
-
-              <circle class="pt" cx="32"  cy="81.1" r="3.2"/>
-              <circle class="pt" cx="102" cy="40.6" r="3.2"/>
-              <circle class="pt" cx="172" cy="59.5" r="3.2"/>
-              <circle class="pt" cx="242" cy="27.6" r="3.2"/>
-              <circle class="pt pt-hi" cx="312" cy="26.7" r="4"/>
-
-              <text class="axis" x="32"  y="114" text-anchor="middle">c1</text>
-              <text class="axis" x="102" y="114" text-anchor="middle">c2</text>
-              <text class="axis" x="172" y="114" text-anchor="middle">c3</text>
-              <text class="axis" x="242" y="114" text-anchor="middle">c4</text>
-              <text class="axis" x="312" y="114" text-anchor="middle">c5</text>
-            </svg>
+            <div class="panel-head"><span>Mean reward, two training runs</span><b>2.35×</b></div>
+            <div class="bars">
+              <div class="bar-row">
+                <span class="lbl">Cloud L4</span>
+                <span class="bar-track"><span class="bar-fill" style="--w:100%"></span></span>
+                <span class="val">96.58</span>
+              </div>
+              <div class="bar-row">
+                <span class="lbl">Laptop CPU</span>
+                <span class="bar-track"><span class="bar-fill" style="--w:43%"></span></span>
+                <span class="val">41.29</span>
+              </div>
+            </div>
 
             <div class="callout">
               <span class="big">3.05×</span>
               <span class="txt">
-                faster at the same arena count — 7 processes × 4 arenas reached
+                faster at the same arena count: 7 processes × 4 arenas reached
                 2,665 steps/sec where 1 process × 28 arenas managed 873.
               </span>
             </div>
@@ -1219,7 +1199,7 @@ footer a:hover { color: var(--accent); }
         </div>
       </article>
 
-      <!-- 02 -->
+      <!-- 02 — Video game sales -->
       <article class="proj rv" data-spot>
         <div class="p-body">
           <div class="p-num">02 / Data Analysis</div>
@@ -1229,19 +1209,19 @@ footer a:hover { color: var(--accent); }
             <span class="tag">Python</span>
             <span class="tag">pandas</span>
             <span class="tag">Matplotlib</span>
-            <span class="tag">Jupyter</span>
+            <span class="tag">Flask</span>
           </div>
 
           <p class="desc">
-            A visualisation project over 16,500+ sales records, built to answer a
-            simple question properly: where does a game actually sell, and has that
-            changed?
+            A Flask web app that analyses 16,598 video game sales records and draws
+            ten Matplotlib charts from them: where games sell, and how that has
+            changed since 1980.
           </p>
 
           <ul class="bullets">
-            <li>Ten charts covering regional market share, cross-region sales correlation, and genre popularity over time.</li>
-            <li>Cleaned inconsistent release years and missing publisher fields before any of the analysis was trustworthy.</li>
-            <li>Found the regional split is far less even than the headline "global sales" number suggests.</li>
+            <li>Ten charts covering sales over time, genre share by year, regional sales by genre, and North America against Europe correlation.</li>
+            <li>Dropped rows with no release year and cut the time series at 2016, where the dataset's coverage thins out.</li>
+            <li>North America accounts for 49% of all units sold, more than Europe and Japan combined.</li>
           </ul>
 
           <div class="p-links">
@@ -1281,15 +1261,15 @@ footer a:hover { color: var(--accent); }
             <div class="callout">
               <span class="big">10</span>
               <span class="txt">
-                charts generated from one cleaned dataframe — regional dynamics,
-                correlations, and genre evolution across four decades.
+                charts generated from one dataframe, served to the browser by a Flask
+                API.
               </span>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- 03 -->
+      <!-- 03 — Power BI -->
       <article class="proj rv" data-spot>
         <div class="p-body">
           <div class="p-num">03 / Business Intelligence</div>
@@ -1298,20 +1278,20 @@ footer a:hover { color: var(--accent); }
           <div class="tags">
             <span class="tag">Power BI</span>
             <span class="tag">DAX</span>
-            <span class="tag">Excel</span>
-            <span class="tag">Data modelling</span>
+                        <span class="tag">Data modelling</span>
           </div>
 
           <p class="desc">
-            A four-page interactive dashboard over roughly 9,200 emergency room
-            patient records, built so a hospital administrator could find a staffing
-            gap without asking an analyst.
+            A four-page Power BI report over 9,216 emergency room visits from April
+            2023 to October 2024, covering patient volume, waiting times, satisfaction
+            and referrals.
           </p>
 
           <ul class="bullets">
-            <li>Tracks average wait time, admission rate and patient satisfaction as headline measures.</li>
-            <li>Every measure breaks down by department referral, age group, gender and time of day.</li>
-            <li>Written as DAX measures over a modelled table rather than pre-aggregated sheets, so the filters actually compose.</li>
+            <li>Four headline measures (patients, average wait, satisfaction, referrals), each shown as a monthly trend and as a consolidated view.</li>
+            <li>Breaks patients down by age group, gender, race, department referral and admission status, plus a day-of-week by wait-time matrix for staffing.</li>
+            <li>DAX measures over the visit table and a separate date table, so the year and month slicers filter every visual together.</li>
+            <li>Findings page: average wait 35.3 minutes, satisfaction 4.99 out of 10, and Saturday the busiest day with 1,377 patients.</li>
           </ul>
 
           <div class="p-links">
@@ -1328,27 +1308,27 @@ footer a:hover { color: var(--accent); }
             <div class="kpis">
               <div class="kpi">
                 <div class="k">9,216</div>
-                <div class="l">Patient records</div>
+                <div class="l">Patients</div>
               </div>
               <div class="kpi">
-                <div class="k">3</div>
-                <div class="l">Headline measures</div>
+                <div class="k">35.3 min</div>
+                <div class="l">Average wait</div>
               </div>
               <div class="kpi">
-                <div class="k">4</div>
-                <div class="l">Breakdown dimensions</div>
+                <div class="k">4.99/10</div>
+                <div class="l">Satisfaction</div>
               </div>
               <div class="kpi">
-                <div class="k">4</div>
-                <div class="l">Report pages</div>
+                <div class="k">50%</div>
+                <div class="l">Admitted</div>
               </div>
             </div>
 
             <div class="pages">
-              <span class="page-chip">Overview</span>
-              <span class="page-chip">Wait time</span>
-              <span class="page-chip">Referrals</span>
-              <span class="page-chip">Satisfaction</span>
+              <span class="page-chip">Monthly View</span>
+              <span class="page-chip">Consolidated View</span>
+              <span class="page-chip">Patient Analysis</span>
+              <span class="page-chip">Key Takeaways</span>
             </div>
           </div>
         </div>
@@ -1372,8 +1352,8 @@ footer a:hover { color: var(--accent); }
 
     <div class="timeline">
       <div class="tl-item now rv">
-        <div class="tl-when">Jun 2025 — May 2027 · in progress</div>
-        <h3>Master of Computer Applications — Generative AI</h3>
+        <div class="tl-when">Jun 2025 – May 2027 · in progress</div>
+        <h3>Master of Computer Applications, Generative AI</h3>
         <p class="tl-where">SRM Institute of Science and Technology, Kattankulathur</p>
         <div class="tl-meta">
           <span class="tag">CGPA 8.68</span>
@@ -1382,7 +1362,7 @@ footer a:hover { color: var(--accent); }
       </div>
 
       <div class="tl-item rv">
-        <div class="tl-when">Jun 2022 — May 2025</div>
+        <div class="tl-when">Jun 2022 – May 2025</div>
         <h3>Bachelor of Computer Applications</h3>
         <p class="tl-where">SRM Institute of Science and Technology, Kattankulathur</p>
         <div class="tl-meta">
@@ -1392,8 +1372,8 @@ footer a:hover { color: var(--accent); }
       </div>
 
       <div class="tl-item rv">
-        <div class="tl-when">2020 — 2022</div>
-        <h3>Class XII, Commerce — CBSE</h3>
+        <div class="tl-when">2020 – 2022</div>
+        <h3>Class XII, Commerce, CBSE</h3>
         <p class="tl-where">Aravinda Vidyamandiram Senior Secondary School, Kottayam</p>
         <div class="tl-meta">
           <span class="tag">83.4%</span>
@@ -1487,7 +1467,7 @@ footer a:hover { color: var(--accent); }
     <div class="sec-head rv">
       <span class="eyebrow">Credentials</span>
       <h2>Fourteen certifications</h2>
-      <p>Filter by issuer. Every badge below is verifiable on Credly or Google Skills.</p>
+      <p>Filter by issuer. Verification links for Credly and Google Skills are below.</p>
     </div>
 
     <div class="filters rv" role="group" aria-label="Filter certifications by issuer">
@@ -1501,23 +1481,23 @@ footer a:hover { color: var(--accent); }
     </div>
 
     <div class="cert-grid" id="certGrid">
-      <div class="cert rv"       data-c="google"><span class="issuer">Google Cloud<span class="yr">2025</span></span><span class="nm">Google Cloud Data Analytics Certificate</span></div>
+      <div class="cert rv"      data-c="google"><span class="issuer">Google Cloud<span class="yr">2025</span></span><span class="nm">Google Cloud Data Analytics Certificate</span></div>
       <div class="cert rv rv-d1" data-c="google"><span class="issuer">Google Cloud<span class="yr">2025</span></span><span class="nm">Develop GenAI Apps with Gemini and Streamlit</span></div>
       <div class="cert rv rv-d2" data-c="google"><span class="issuer">Google Cloud<span class="yr">2025</span></span><span class="nm">Prompt Design in Vertex AI</span></div>
-      <div class="cert rv"       data-c="google"><span class="issuer">Google Cloud<span class="yr">2025</span></span><span class="nm">Inspect Rich Documents with Gemini Multimodality and Multimodal RAG</span></div>
+      <div class="cert rv"      data-c="google"><span class="issuer">Google Cloud<span class="yr">2025</span></span><span class="nm">Inspect Rich Documents with Gemini Multimodality and Multimodal RAG</span></div>
 
       <div class="cert rv rv-d1" data-c="aws"><span class="issuer">AWS Academy<span class="yr">2024</span></span><span class="nm">AWS Academy Graduate — Cloud Foundations</span></div>
       <div class="cert rv rv-d2" data-c="aws"><span class="issuer">AWS Academy<span class="yr">2024</span></span><span class="nm">AWS Academy Graduate — Data Engineering</span></div>
 
-      <div class="cert rv"       data-c="aicte"><span class="issuer">EduSkills · AICTE<span class="yr">2026</span></span><span class="nm">AR/VR Development with Unity, Cohort 16</span></div>
+      <div class="cert rv"      data-c="aicte"><span class="issuer">EduSkills · AICTE<span class="yr">2026</span></span><span class="nm">AR/VR Development with Unity, Cohort 16</span></div>
       <div class="cert rv rv-d1" data-c="aicte"><span class="issuer">Zscaler · AICTE<span class="yr">2025</span></span><span class="nm">Zero Trust Cloud Security</span></div>
       <div class="cert rv rv-d2" data-c="aicte"><span class="issuer">EduSkills · AICTE<span class="yr">2024</span></span><span class="nm">AWS Data Engineering Virtual Internship</span></div>
 
-      <div class="cert rv"       data-c="forage"><span class="issuer">Tata iQ · Forage<span class="yr">2026</span></span><span class="nm">GenAI Powered Data Analytics Job Simulation</span></div>
+      <div class="cert rv"      data-c="forage"><span class="issuer">Tata iQ · Forage<span class="yr">2026</span></span><span class="nm">GenAI Powered Data Analytics Job Simulation</span></div>
       <div class="cert rv rv-d1" data-c="forage"><span class="issuer">Deloitte AU · Forage<span class="yr">2026</span></span><span class="nm">Data Analytics Job Simulation</span></div>
 
       <div class="cert rv rv-d2" data-c="coursera"><span class="issuer">Coursera<span class="yr">2026</span></span><span class="nm">Google AI Essentials</span></div>
-      <div class="cert rv"       data-c="coursera"><span class="issuer">Coursera<span class="yr">2026</span></span><span class="nm">Google Prompting Essentials</span></div>
+      <div class="cert rv"      data-c="coursera"><span class="issuer">Coursera<span class="yr">2026</span></span><span class="nm">Google Prompting Essentials</span></div>
 
       <div class="cert rv rv-d1" data-c="other"><span class="issuer">Anthropic Academy<span class="yr">2026</span></span><span class="nm">Claude 101</span></div>
     </div>
@@ -1539,7 +1519,7 @@ footer a:hover { color: var(--accent); }
 <section id="contact">
   <div class="wrap">
     <div class="contact-box rv">
-      <h2>Let's build something</h2>
+      <h2>Open to internships</h2>
       <p>
         I'm looking for internships and graduate roles in machine learning, data
         analysis or business intelligence, starting 2027. If you have an
@@ -1583,7 +1563,7 @@ footer a:hover { color: var(--accent); }
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- theme ---------- */
+  /* ---------- theme: system → light → dark ---------- */
   var root = document.documentElement;
   var btn  = document.getElementById("theme");
 
@@ -1604,7 +1584,7 @@ footer a:hover { color: var(--accent); }
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
 
-  /* ---------- nav scrolled ---------- */
+  /* ---------- nav: scrolled state ---------- */
   var nav = document.getElementById("nav");
   var onScroll = function () {
     nav.classList.toggle("scrolled", window.scrollY > 24);
@@ -1612,7 +1592,7 @@ footer a:hover { color: var(--accent); }
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  /* ---------- reveal ---------- */
+  /* ---------- reveal on scroll ---------- */
   var revealables = document.querySelectorAll(".rv");
 
   if (!("IntersectionObserver" in window) || reduce) {
@@ -1687,7 +1667,7 @@ footer a:hover { color: var(--accent); }
     sections.forEach(function (s) { sio.observe(s); });
   }
 
-  /* ---------- cursor spotlight ---------- */
+  /* ---------- cursor spotlight on project cards ---------- */
   if (!reduce && window.matchMedia("(hover: hover)").matches) {
     document.querySelectorAll("[data-spot]").forEach(function (card) {
       card.addEventListener("pointermove", function (e) {
@@ -1698,7 +1678,7 @@ footer a:hover { color: var(--accent); }
     });
   }
 
-  /* ---------- cert filter ---------- */
+  /* ---------- certification filter ---------- */
   var filters = document.querySelectorAll(".filter");
   var certs = document.querySelectorAll("#certGrid .cert");
 
