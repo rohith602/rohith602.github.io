@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Rohith Srikumar Menon</title>
+<meta name="description" content="MCA student specialising in Generative AI at SRMIST. Reinforcement learning, data analysis and business intelligence projects.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rohith Srikumar Menon">
+<meta property="og:description" content="MCA student specialising in Generative AI at SRMIST. Reinforcement learning, data analysis and business intelligence projects.">
+<meta property="og:url" content="https://rohith602.github.io/v3/">
+<meta property="og:image" content="https://rohith602.github.io/v3/img/hummingbird-race.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#111114">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23111114'/%3E%3Cpath d='M9 9l14 14M23 9L9 23' stroke='%237fb0ec' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+
+<style>
+:root {
+  color-scheme: light;
+  --case:   #111114;   /* the black plastic case */
+  --silver: #c3c8d2;   /* type printed on the case band */
+  --silver-dim: #9aa0ad;
+  --paper:  #e6e8ec;   /* the printed insert */
+  --paper-2:#d8dbe1;
+  --ink:    #15161a;
+  --ink-2:  #474c59;
+  --rule:   #b4b9c3;
+  --disc:   #2d33a6;   /* the disc's blue-violet underside */
+  --cross:  #7fb0ec;
+  --circle: #d9434d;
+
+  --title: "Saira Condensed", "Arial Narrow", sans-serif;
+  --text: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; scrollbar-color: var(--ink-2) var(--case); }
+
+body {
+  margin: 0;
+  background: var(--case);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--text);
+  font-variant-numeric: tabular-nums;
+  caret-color: var(--disc);
+  -webkit-font-smoothing: antialiased;
+  padding: 0 8px 8px;
+}
+
+::selection { background: var(--ink); color: var(--paper); }
+
+a { color: var(--disc); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 2px solid var(--disc); outline-offset: 3px; }
+
+img { display: block; max-width: 100%; height: auto; }
+
+h1, h2, h3 { font-family: var(--title); font-weight: 700; line-height: 1; margin: 0; }
+p { margin: 0; }
+
+.skip {
+  position: absolute; left: 8px; top: -64px;
+  padding: 8px 16px; background: var(--paper); color: var(--ink); z-index: 10;
+}
+.skip:focus { top: 8px; }
+
+/* ---------- the insert: paper framed by the case ---------- */
+.insert {
+  max-width: 78rem;
+  margin: 0 auto;
+  background: var(--paper);
+}
+
+.wrap { padding-left: clamp(16px, 5vw, 64px); padding-right: clamp(16px, 5vw, 64px); }
+
+/* ---------- header band ---------- */
+.band {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--case);
+  color: var(--silver);
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.band .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  min-height: 64px;
+  padding-top: 8px; padding-bottom: 8px;
+}
+
+.band .name {
+  font: 700 1.25rem/1 var(--title);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.band ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 24px; }
+
+/* the selected item carries the pointer; nothing else marks selection */
+.pointer {
+  position: relative;
+  display: inline-block;
+  padding-left: 16px;
+  color: inherit;
+  text-decoration: none;
+}
+.pointer::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  border-block: 5px solid transparent;
+  border-left: 7px solid currentColor;
+  transform: translate(-4px, -50%);
+  opacity: 0;
+  transition: transform 220ms var(--ease), opacity 220ms var(--ease);
+}
+.pointer:hover::before, .pointer:focus-visible::before, .pointer[aria-current="true"]::before {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+.band .pointer { font: 600 1rem/2.5 var(--title); letter-spacing: 0.04em; text-transform: uppercase; color: var(--silver); }
+.band .pointer:hover, .band .pointer:focus-visible { color: var(--paper); }
+.band :focus-visible { outline-color: var(--paper); }
+
+/* ---------- buttons: pressed inverts ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font: 600 1.0625rem/1 var(--text);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { text-decoration: none; background: #26282f; border-color: #26282f; }
+.btn:active { background: var(--paper); color: var(--ink); border-color: var(--ink); }
+.btn.alt { background: transparent; color: var(--ink); }
+.btn.alt:hover { background: var(--paper-2); }
+.btn.alt:active { background: var(--ink); color: var(--paper); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+
+/* ---------- front cover: the art is the cover, the title sits on the case band ---------- */
+.front { background: var(--case); }
+.front img { width: 100%; height: clamp(216px, 38vw, 440px); object-fit: cover; object-position: 50% 0; }
+.titlebar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding-top: 24px; padding-bottom: 24px;
+  color: var(--paper);
+}
+.cover h1 {
+  font-size: clamp(2.75rem, 7.4vw, 6rem);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+.titlebar p { font-size: 0.875rem; color: var(--silver-dim); }
+.cover-text {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 48px;
+  align-items: start;
+  padding-top: 40px; padding-bottom: 88px;
+}
+.cover .lede { font: 600 clamp(1.25rem, 2.4vw, 1.5rem)/1.3 var(--text); }
+.cover .intro { margin-top: 16px; max-width: 34em; color: var(--ink-2); }
+.cover .actions { display: flex; flex-wrap: wrap; gap: 16px; }
+.cover .status { margin-top: 24px; font-size: 0.9375rem; color: var(--ink-2); }
+
+.shot figcaption { margin-top: 8px; font-size: 0.875rem; color: var(--ink-2); }
+
+/* ---------- sections ---------- */
+section { padding-top: 88px; padding-bottom: 80px; border-top: 2px solid var(--ink); }
+section h2 { font-size: clamp(2.25rem, 5vw, 3.5rem); text-transform: uppercase; letter-spacing: -0.005em; }
+section .sub { margin-top: 16px; max-width: 40em; color: var(--ink-2); }
+
+/* ---------- projects: laid out like a case back ---------- */
+.game {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 40px;
+  align-items: start;
+  margin-top: 64px;
+}
+.game + .game { padding-top: 64px; border-top: 1px solid var(--rule); }
+.game:nth-of-type(even) .shots { order: 2; }
+
+.shots { display: grid; gap: 24px; }
+.shot { margin: 0; }
+.shot a { display: block; border: 2px solid var(--ink); }
+.shot a:hover, .shot a:focus-visible { outline: 2px solid var(--disc); outline-offset: 3px; }
+
+.game h3 { font-size: clamp(1.75rem, 3.4vw, 2.25rem); text-transform: uppercase; }
+.game .blurb { margin-top: 16px; }
+
+.features { list-style: none; margin: 24px 0 0; padding: 0; }
+.features li { position: relative; padding-left: 24px; color: var(--ink-2); }
+.features li + li { margin-top: 8px; }
+.features li::before {
+  content: ""; position: absolute; left: 2px; top: 0.62em;
+  width: 7px; height: 7px; background: var(--ink);
+}
+
+.spec {
+  width: 100%;
+  margin-top: 32px;
+  border-collapse: collapse;
+  border-block: 2px solid var(--ink);
+  font-size: 0.9375rem;
+}
+.spec th, .spec td { padding: 8px 0; text-align: left; vertical-align: top; border-top: 1px solid var(--rule); }
+.spec tr:first-child th, .spec tr:first-child td { border-top: 0; }
+.spec th {
+  width: 9.5em;
+  padding-right: 16px;
+  font: 600 0.9375rem/1.6 var(--text);
+  color: var(--ink);
+}
+.meter { display: grid; grid-template-columns: 6.5em 1fr 3.5em; gap: 8px; align-items: center; }
+.meter + .meter { margin-top: 8px; }
+.meter .track { height: 8px; background: var(--paper-2); }
+.meter .fill { display: block; height: 100%; background: var(--ink); }
+.meter .v { text-align: right; }
+
+.repo { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; font-weight: 600; }
+.repo svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+/* ---------- journey ---------- */
+.timeline { list-style: none; margin: 48px 0 0; padding: 0; border-top: 2px solid var(--ink); }
+.timeline li { display: grid; grid-template-columns: 13em 1fr; gap: 24px; padding-top: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); }
+.timeline .when { color: var(--ink-2); }
+.timeline h3 { font-size: 1.5rem; text-transform: uppercase; }
+.timeline .where { margin-top: 8px; }
+.timeline .facts { margin-top: 8px; color: var(--ink-2); }
+
+/* ---------- skills ---------- */
+.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 40px; margin: 48px 0 0; }
+.skills div { border-top: 2px solid var(--ink); padding-top: 16px; }
+.skills dt { font: 700 1.25rem/1.2 var(--title); text-transform: uppercase; }
+.skills dd { margin: 8px 0 0; color: var(--ink-2); }
+
+/* ---------- certifications: the credits ---------- */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+.filter {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font: 600 0.9375rem/1 var(--text);
+  cursor: pointer;
+}
+.filter:hover { background: var(--paper-2); }
+.filter[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+.credits { list-style: none; margin: 32px 0 0; padding: 0; columns: 2; column-gap: 48px; border-top: 2px solid var(--ink); }
+.credits li { break-inside: avoid; padding-top: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
+.credits .by { display: block; font-size: 0.875rem; color: var(--ink-2); }
+.credits .nm { display: block; font-weight: 600; }
+.verify { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 32px; }
+
+/* ---------- contact: the disc ---------- */
+.disc {
+  position: relative;
+  overflow: hidden;
+  background: var(--disc);
+  color: var(--paper);
+  border-top: 0;
+}
+.disc .wrap { position: relative; z-index: 1; }
+.disc-mark { position: absolute; right: -96px; top: 50%; width: 480px; height: 480px; transform: translateY(-50%); }
+.disc h2 { color: var(--paper); }
+.disc .sub { color: #d3d6f2; }
+.disc .actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.disc .btn { background: var(--paper); color: var(--disc); border-color: var(--paper); }
+.disc .btn:hover { background: #ffffff; border-color: #ffffff; }
+.disc .btn:active { background: var(--disc); color: var(--paper); }
+.disc .btn.alt { background: transparent; color: var(--paper); }
+.disc .btn.alt:hover { background: rgba(255, 255, 255, 0.12); }
+.disc :focus-visible { outline-color: var(--paper); }
+
+/* ---------- legal strip ---------- */
+.legal { background: var(--case); color: var(--silver-dim); font-size: 0.9375rem; padding-bottom: env(safe-area-inset-bottom, 0px); }
+.legal .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 32px; padding-bottom: 32px; }
+.legal ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 24px; }
+.legal a { color: var(--silver); }
+.legal :focus-visible { outline-color: var(--paper); }
+
+/* ---------- smaller screens ---------- */
+@media (max-width: 60rem) {
+  .cover-text, .game { grid-template-columns: 1fr; }
+  .cover-text { gap: 32px; }
+  .game:nth-of-type(even) .shots { order: 0; }
+  .skills { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 40rem) {
+  .band { position: static; }
+  .band ul { margin-left: -16px; }
+  .timeline li { grid-template-columns: 1fr; gap: 8px; }
+  .disc { padding-bottom: 272px; }
+  .disc-mark { right: -72px; top: auto; bottom: 24px; transform: none; width: 232px; height: 232px; }
+  .skills { grid-template-columns: 1fr; }
+  .credits { columns: 1; }
+  .spec th { width: 7.5em; }
+  .meter { grid-template-columns: 5.5em 1fr 3.25em; }
+  section { padding-top: 64px; padding-bottom: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="insert">
+
+<header class="band">
+  <div class="wrap">
+    <a class="name" href="#top">Rohith Srikumar Menon</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a class="pointer" href="#work">Work</a></li>
+        <li><a class="pointer" href="#journey">Journey</a></li>
+        <li><a class="pointer" href="#skills">Skills</a></li>
+        <li><a class="pointer" href="#certs">Certifications</a></li>
+        <li><a class="pointer" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="cover" id="top">
+  <div class="front">
+    <img src="img/hummingbird-cover.jpg" width="1400" height="540" fetchpriority="high"
+         alt="Split screen on an Android phone: the cloud-trained agent, labelled Rented GPU 96.58 and leading, on the left, and the laptop-trained agent, labelled On-device 41.29, on the right, each flying to flowers on a low-poly island">
+    <div class="titlebar wrap">
+      <h1>Rohith Srikumar Menon</h1>
+      <p>Cover: both trained Hummingbird agents racing on an Android phone.</p>
+    </div>
+  </div>
+  <div class="cover-text wrap">
+    <div>
+      <p class="lede">I work on reinforcement learning, data analysis and business intelligence.</p>
+      <p class="intro">
+        MCA student specialising in Generative AI at SRM Institute of Science and
+        Technology, Chennai. I train agents, dig through datasets, and turn messy
+        records into things people can actually decide from.
+      </p>
+    </div>
+    <div>
+      <div class="actions">
+        <a class="btn" href="#work">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="var(--cross)" stroke-width="2.4" stroke-linecap="round"/></svg>
+          See the work
+        </a>
+        <a class="btn alt" href="#contact">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.2" fill="none" stroke="var(--circle)" stroke-width="2.4"/></svg>
+          Get in touch
+        </a>
+      </div>
+      <p class="status">Graduating May 2027. Open to internships.</p>
+    </div>
+  </div>
+</div>
+
+<section id="work">
+  <div class="wrap">
+    <h2>Three projects, three different problems</h2>
+    <p class="sub">
+      A reinforcement learning agent trained on a laptop and then on a rented
+      cloud GPU, an analysis of 16,598 video game sales records, and a Power BI
+      report over 9,216 emergency room visits.
+    </p>
+
+    <article class="game">
+      <div class="shots">
+        <figure class="shot">
+          <a href="img/hummingbird-debug.jpg"><img src="img/hummingbird-debug.jpg" width="1560" height="720" loading="lazy" decoding="async"
+               alt="The demo's debug view: the agent's nine sensor rays drawn as coloured lines over the island, and its ten live observation values, such as rotation, direction to the flower and beak alignment, listed on screen"></a>
+          <figcaption>The debug view: the agent's sensor rays and its ten observations, live.</figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="img/hummingbird-arenas.jpg"><img src="img/hummingbird-arenas.jpg" width="1400" height="610" loading="lazy" decoding="async"
+               alt="Twenty-eight identical floating flower islands laid out in rows in one Unity scene, the parallel training arenas"></a>
+          <figcaption>The 28 training arenas, laid out in one Unity scene.</figcaption>
+        </figure>
+      </div>
+      <div>
+        <h3>Hummingbird: a nectar-collecting agent</h3>
+        <p class="blurb">
+          Trained an agent to fly through a 3D environment and feed from flowers
+          using Proximal Policy Optimisation, then took the training run apart to
+          find out why it was slow.
+        </p>
+        <ul class="features">
+          <li>Found two reasons the first run stopped at 41.29: it ran out of steps while its learning rate decayed to zero, and it saw one frame at a time, so it could not sense its own velocity. Stacking three frames and a ten times larger step budget raised mean reward to 96.58.</li>
+          <li>Profiled the run and found 95.5% of wall-clock time was Unity physics on the CPU, so a bigger GPU would have bought almost nothing.</li>
+          <li>Benchmarked process layouts on a 28-vCPU cloud instance: splitting 28 arenas across 7 processes instead of 1 tripled throughput.</li>
+          <li>Exported the trained policy to ONNX. It runs inside Unity with no Python connection, in the Editor and on an Android phone.</li>
+        </ul>
+        <table class="spec">
+          <tr><th scope="row">Built with</th><td>Unity 6, ML-Agents 4.1, PPO, Python, ONNX, Android</td></tr>
+          <tr><th scope="row">Mean reward</th><td>
+            <div class="meter"><span>Cloud L4</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="v">96.58</span></div>
+            <div class="meter"><span>Laptop CPU</span><span class="track"><span class="fill" style="width:43%"></span></span><span class="v">41.29</span></div>
+          </td></tr>
+          <tr><th scope="row">Throughput</th><td>3.05× faster at the same arena count: 7 processes × 4 arenas reached 2,665 steps/sec where 1 process × 28 arenas managed 873.</td></tr>
+        </table>
+        <a class="repo" href="https://github.com/rohith602/HummingbirdMLAgents">View repository
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+    </article>
+
+    <article class="game">
+      <div class="shots">
+        <figure class="shot">
+          <a href="img/vgsales-regional.jpg"><img src="img/vgsales-regional.jpg" width="1000" height="600" loading="lazy" decoding="async"
+               alt="Line chart of video game sales per year by region, 1980 to 2016, with North America highest and peaking around 2008"></a>
+          <figcaption>Regional sales by year, drawn by the project's own code.</figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="img/vgsales-genres.jpg"><img src="img/vgsales-genres.jpg" width="1000" height="600" loading="lazy" decoding="async"
+               alt="Stacked area chart of global sales per year for the four biggest genres, Action, Misc, Role-Playing and Sports, 1980 to 2016"></a>
+          <figcaption>Genre share over time, from the same code.</figcaption>
+        </figure>
+      </div>
+      <div>
+        <h3>Four decades of video game sales</h3>
+        <p class="blurb">
+          A Flask web app that analyses 16,598 video game sales records and draws
+          ten Matplotlib charts from them: where games sell, and how that has
+          changed since 1980.
+        </p>
+        <ul class="features">
+          <li>Ten charts covering sales over time, genre share by year, regional sales by genre, and North America against Europe correlation.</li>
+          <li>Dropped rows with no release year and cut the time series at 2016, where the dataset's coverage thins out.</li>
+          <li>North America accounts for 49% of all units sold, more than Europe and Japan combined.</li>
+        </ul>
+        <table class="spec">
+          <tr><th scope="row">Built with</th><td>Python, pandas, Matplotlib, Flask</td></tr>
+          <tr><th scope="row">Share of units</th><td>
+            <div class="meter"><span>N. America</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="v">49%</span></div>
+            <div class="meter"><span>Europe</span><span class="track"><span class="fill" style="width:55%"></span></span><span class="v">27%</span></div>
+            <div class="meter"><span>Japan</span><span class="track"><span class="fill" style="width:29%"></span></span><span class="v">14%</span></div>
+            <div class="meter"><span>Other</span><span class="track"><span class="fill" style="width:18%"></span></span><span class="v">9%</span></div>
+          </td></tr>
+          <tr><th scope="row">Output</th><td>10 charts from one dataframe, served to the browser by a Flask API.</td></tr>
+        </table>
+        <a class="repo" href="https://github.com/rohith602/Video-Game-Data-Analysis-Project">View repository
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+    </article>
+
+    <article class="game">
+      <div class="shots">
+        <figure class="shot">
+          <a href="img/er-dashboard.jpg"><img src="img/er-dashboard.jpg" width="1400" height="864" loading="lazy" decoding="async"
+               alt="Power BI dashboard page with patient count, average wait time, satisfaction and referral cards above charts by age, gender, race, department and day of week"></a>
+          <figcaption>The Consolidated View page of the report.</figcaption>
+        </figure>
+        <figure class="shot">
+          <a href="img/er-monthly.jpg"><img src="img/er-monthly.jpg" width="1400" height="864" loading="lazy" decoding="async"
+               alt="Power BI Monthly View page for June 2023: 506 patients, 35.6 minute average wait, 5.18 satisfaction and 201 referrals, with daily trend lines and breakdown charts"></a>
+          <figcaption>The Monthly View page, filtered to June 2023.</figcaption>
+        </figure>
+      </div>
+      <div>
+        <h3>Hospital emergency room dashboard</h3>
+        <p class="blurb">
+          A four-page Power BI report over 9,216 emergency room visits from April
+          2023 to October 2024, covering patient volume, waiting times, satisfaction
+          and referrals.
+        </p>
+        <ul class="features">
+          <li>Four headline measures (patients, average wait, satisfaction, referrals), each shown as a monthly trend and as a consolidated view.</li>
+          <li>Breaks patients down by age group, gender, race, department referral and admission status, plus a day-of-week by wait-time matrix for staffing.</li>
+          <li>DAX measures over the visit table and a separate date table, so the year and month slicers filter every visual together.</li>
+          <li>Findings page: average wait 35.3 minutes, satisfaction 4.99 out of 10, and Saturday the busiest day with 1,377 patients.</li>
+        </ul>
+        <table class="spec">
+          <tr><th scope="row">Built with</th><td>Power BI, DAX, data modelling</td></tr>
+          <tr><th scope="row">Headline figures</th><td>9,216 patients · 35.3 min average wait · 4.99/10 satisfaction · 50% admitted</td></tr>
+          <tr><th scope="row">Pages</th><td>Monthly View, Consolidated View, Patient Analysis, Key Takeaways</td></tr>
+        </table>
+        <a class="repo" href="https://github.com/rohith602/HospitalERDashboard">View repository
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="wrap">
+    <h2>Commerce to Generative AI</h2>
+    <p class="sub">
+      I did not come in through a computer science stream. That turned out to
+      matter less than being willing to learn everything from the ground up.
+    </p>
+    <ol class="timeline">
+      <li>
+        <span class="when">Jun 2025 – May 2027, in progress</span>
+        <div>
+          <h3>Master of Computer Applications, Generative AI</h3>
+          <p class="where">SRM Institute of Science and Technology, Kattankulathur</p>
+          <p class="facts">CGPA 8.68 · Specialisation: Generative AI</p>
+        </div>
+      </li>
+      <li>
+        <span class="when">Jun 2022 – May 2025</span>
+        <div>
+          <h3>Bachelor of Computer Applications</h3>
+          <p class="where">SRM Institute of Science and Technology, Kattankulathur</p>
+          <p class="facts">CGPA 8.22 · TANCET 95.29 percentile</p>
+        </div>
+      </li>
+      <li>
+        <span class="when">2020 – 2022</span>
+        <div>
+          <h3>Class XII, Commerce, CBSE</h3>
+          <p class="where">Aravinda Vidyamandiram Senior Secondary School, Kottayam</p>
+          <p class="facts">83.4% · English 98</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>What I work with</h2>
+    <dl class="skills">
+      <div><dt>AI and Generative AI</dt><dd>Gemini API, Vertex AI, IBM watsonx.ai, Streamlit, Claude, prompt design</dd></div>
+      <div><dt>Data and analytics</dt><dd>Power BI, DAX, pandas, SQL, Tableau, Excel, Matplotlib</dd></div>
+      <div><dt>Programming</dt><dd>Python, C#, Jupyter, Git</dd></div>
+      <div><dt>Cloud</dt><dd>AWS, Google Cloud, IBM Cloud</dd></div>
+      <div><dt>Simulation and RL</dt><dd>Unity, ML-Agents, PPO, ONNX, PyTorch</dd></div>
+      <div><dt>Languages</dt><dd>English, Malayalam, Tamil, French</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <h2>Fourteen certifications</h2>
+    <p class="sub">Filter by issuer. Verification links for Credly and Google Skills are below.</p>
+
+    <div class="filters" role="group" aria-label="Filter certifications by issuer">
+      <button class="filter" type="button" data-f="all" aria-pressed="true">All · 14</button>
+      <button class="filter" type="button" data-f="google" aria-pressed="false">Google Cloud · 4</button>
+      <button class="filter" type="button" data-f="aicte" aria-pressed="false">AICTE · 3</button>
+      <button class="filter" type="button" data-f="aws" aria-pressed="false">AWS · 2</button>
+      <button class="filter" type="button" data-f="forage" aria-pressed="false">Forage · 2</button>
+      <button class="filter" type="button" data-f="coursera" aria-pressed="false">Coursera · 2</button>
+      <button class="filter" type="button" data-f="other" aria-pressed="false">Other · 1</button>
+    </div>
+
+    <ul class="credits" aria-live="polite">
+      <li data-c="google"><span class="by">Google Cloud · 2025</span><span class="nm">Google Cloud Data Analytics Certificate</span></li>
+      <li data-c="google"><span class="by">Google Cloud · 2025</span><span class="nm">Develop GenAI Apps with Gemini and Streamlit</span></li>
+      <li data-c="google"><span class="by">Google Cloud · 2025</span><span class="nm">Prompt Design in Vertex AI</span></li>
+      <li data-c="google"><span class="by">Google Cloud · 2025</span><span class="nm">Inspect Rich Documents with Gemini Multimodality and Multimodal RAG</span></li>
+      <li data-c="aws"><span class="by">AWS Academy · 2024</span><span class="nm">AWS Academy Graduate — Cloud Foundations</span></li>
+      <li data-c="aws"><span class="by">AWS Academy · 2024</span><span class="nm">AWS Academy Graduate — Data Engineering</span></li>
+      <li data-c="aicte"><span class="by">EduSkills · AICTE · 2026</span><span class="nm">AR/VR Development with Unity, Cohort 16</span></li>
+      <li data-c="aicte"><span class="by">Zscaler · AICTE · 2025</span><span class="nm">Zero Trust Cloud Security</span></li>
+      <li data-c="aicte"><span class="by">EduSkills · AICTE · 2024</span><span class="nm">AWS Data Engineering Virtual Internship</span></li>
+      <li data-c="forage"><span class="by">Tata iQ · Forage · 2026</span><span class="nm">GenAI Powered Data Analytics Job Simulation</span></li>
+      <li data-c="forage"><span class="by">Deloitte AU · Forage · 2026</span><span class="nm">Data Analytics Job Simulation</span></li>
+      <li data-c="coursera"><span class="by">Coursera · 2026</span><span class="nm">Google AI Essentials</span></li>
+      <li data-c="coursera"><span class="by">Coursera · 2026</span><span class="nm">Google Prompting Essentials</span></li>
+      <li data-c="other"><span class="by">Anthropic Academy · 2026</span><span class="nm">Claude 101</span></li>
+    </ul>
+
+    <div class="verify">
+      <a class="repo" href="https://credly.com/users/rohith-menon.fcc277ea">Verify on Credly
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      <a class="repo" href="https://skills.google/public_profiles/ffb321ee-e3b7-4bbb-b681-1d85f36b0072">Verify on Google Skills
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="disc" id="contact">
+  <svg class="disc-mark" viewBox="0 0 480 480" aria-hidden="true">
+    <circle cx="240" cy="240" r="236" fill="#3239b0"/>
+    <circle cx="240" cy="240" r="176" fill="none" stroke="#3a42bd" stroke-width="2"/>
+    <circle cx="240" cy="240" r="112" fill="none" stroke="#3a42bd" stroke-width="2"/>
+    <circle cx="240" cy="240" r="56" fill="#262b92"/>
+    <circle cx="240" cy="240" r="24" fill="#111114"/>
+  </svg>
+  <div class="wrap">
+    <h2>Open to internships</h2>
+    <p class="sub">
+      I'm looking for internships and graduate roles in machine learning, data
+      analysis or business intelligence, starting 2027. If you have an
+      interesting problem, I'd like to hear about it.
+    </p>
+    <div class="actions">
+      <a class="btn" href="mailto:rohithmenon2022@gmail.com">rohithmenon2022@gmail.com</a>
+      <a class="btn alt" href="https://www.linkedin.com/in/rohith-srikumar-menon-973026266">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="legal">
+  <div class="wrap">
+    <p>Rohith Srikumar Menon · Chennai, India</p>
+    <ul>
+      <li><a href="https://github.com/rohith602">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/rohith-srikumar-menon-973026266">LinkedIn</a></li>
+      <li><a href="https://credly.com/users/rohith-menon.fcc277ea">Credly</a></li>
+      <li><a href="https://skills.google/public_profiles/ffb321ee-e3b7-4bbb-b681-1d85f36b0072">Google Skills</a></li>
+      <li><a href="#top">Back to top</a></li>
+    </ul>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  var navLinks = document.querySelectorAll(".band .pointer");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(function (a) {
+          if (a.getAttribute("href") === "#" + e.target.id) a.setAttribute("aria-current", "true");
+          else a.removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    document.querySelectorAll("main section[id]").forEach(function (sec) { io.observe(sec); });
+  }
+  var filters = document.querySelectorAll(".filter");
+  var credits = document.querySelectorAll(".credits li");
+  filters.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      filters.forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
+      credits.forEach(function (li) {
+        li.hidden = btn.dataset.f !== "all" && li.dataset.c !== btn.dataset.f;
+      });
+    });
+  });
+</script>
+</body>
+</html>
